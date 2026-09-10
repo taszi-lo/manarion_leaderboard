@@ -13,7 +13,7 @@ for i in leaderboard['Entries']:
 playerdata = []
 
 # Fetching player data for the names in the leaderboard
-for name in names[:5]:
+for name in names:
     url = f"https://api.manarion.com/players/{name}"
     playerdata.append(requests.get(url).json())
     time.sleep(2)
@@ -71,4 +71,4 @@ fig = px.bar(
 )
 fig.update_traces(width = 0.2)
 fig.update_layout(height=max(400, len(names) * 40))
-fig.write_html("docs/top100battlor.html")
+fig.write_html("docs/top100battlor.html", include_plotlyjs="cdn")
