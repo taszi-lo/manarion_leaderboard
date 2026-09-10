@@ -4,8 +4,7 @@ A daily-updated horizontal bar chart of the top 100 battlors on the
 [Manarion](https://manarion.com) `highest_damage_spell_rank` leaderboard, ranked
 by daily untaxed dust income and colored by guild.
 
-**Live chart:** `https://<your-username>.github.io/<repo-name>/top100battlor.html`
-(update this link once GitHub Pages is enabled — see below)
+**Live chart:** `https://taszi-lo.github.io/manarion_leaderboard/top100battlor.html`
 
 ## How it works
 
@@ -47,7 +46,7 @@ rate limit across 100 players.
    trigger it manually from the **Actions** tab (`Run workflow`).
 5. Once Pages finishes its first build, your chart is public at:
    ```
-   https://<your-username>.github.io/<repo-name>/top100battlor.html
+   https://taszi-lo.github.io/manarion_leaderboard/top100battlor.html
    ```
 
 ## Files
