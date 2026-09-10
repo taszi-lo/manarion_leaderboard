@@ -1,0 +1,40 @@
+name: Update leaderboard
+
+on:
+  schedule:
+    # Runs daily at 06:00 UTC. Adjust as you like: https://crontab.guru
+    - cron: "0 6 * * *"
+  workflow_dispatch: {}   # allows manually triggering the workflow from the Actions tab
+
+# Lets the workflow push the updated HTML file back to the repo
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15   # the Manarion API rate limit means ~100 players take a few minutes
+
+    steps:
+      - name: Check out repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: "pip"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run script
+        run: python main.py
+
+      - name: Commit and push updated chart
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add docs/top100battlor.html
+          git diff --staged --quiet || git commit -m "Update leaderboard [automated]"
+          git push
